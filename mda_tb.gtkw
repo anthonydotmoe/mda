@@ -1,0 +1,44 @@
+[*]
+[*] GTKWave Analyzer v3.3.117 (w)1999-2023 BSI
+[*] Sun Nov  5 04:33:15 2023
+[*]
+[dumpfile] "/home/anthony/fpga/upduino/mda/mda_tb.vcd"
+[dumpfile_mtime] "Sun Nov  5 04:25:13 2023"
+[dumpfile_size] 75578086
+[savefile] "/home/anthony/fpga/upduino/mda/mda_tb.gtkw"
+[timestart] 108686000
+[size] 1706 1361
+[pos] -1 -1
+*-18.910015 110209000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] mda_tb.
+[treeopen] mda_tb.mda.
+[sst_width] 273
+[signals_width] 214
+[sst_expanded] 1
+[sst_vpaned_height] 421
+@28
+mda_tb.mda.mda_pos_inst.rst
+mda_tb.mda.mda_pos_inst.clk
+mda_tb.mda.mda_pos_inst.enable
+mda_tb.mda.videogen_inst.enable
+@24
+mda_tb.mda.x[9:0]
+mda_tb.mda.y[8:0]
+@23
+mda_tb.mda.mda_pos_inst.char_pixel[3:0]
+@24
+mda_tb.mda.mda_pos_inst.col_counter[6:0]
+@22
+mda_tb.mda.chrram_inst.full_addr[10:0]
+mda_tb.mda.chrram_inst.ram_raddr[7:0]
+@24
+mda_tb.mda.mda_pos_inst.char_row[3:0]
+mda_tb.mda.mda_pos_inst.row_counter[4:0]
+@22
+mda_tb.mda.chrrom_inst.code[7:0]
+mda_tb.mda.chrrom_inst.data[7:0]
+@28
+mda_tb.mda.pixel_ser_inst.char_line[7:0]
+mda_tb.mda.pixel_ser_inst.pixel_out
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,7 @@
+set_io -nowarn rst     48
+set_io -nowarn inten	2
+set_io -nowarn video   46
+set_io -nowarn hsync   47
+set_io -nowarn vsync   45
+
+set_io -nowarn clk     20
