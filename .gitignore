@@ -1,3 +1,4 @@
 *.dblite
 hardware*
 *.out
+*.vcd
