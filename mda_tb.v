@@ -29,7 +29,7 @@ initial begin
 	#1000;
 	rst = 1'b0;
 
-	#40000000;
+	#1000000;
 
 	$finish;
 end

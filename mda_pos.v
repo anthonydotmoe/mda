@@ -2,6 +2,7 @@ module mda_pos(
 	input			clk,
 	input			rst,
 	input			enable,		// Valid during valid pixel periods
+	output			add_one,	// This signal steps RAM indexing ahead to compensate for access times
 	output		[6:0]	col,		// Character column (0-79)
 	output		[4:0]	row,		// Character row    (0-24)
 	output		[3:0]	char_pixel,	// Output pixel position within the character
@@ -13,10 +14,14 @@ parameter MAX_ROW = 25-1;   // Maximum rows
 parameter MAX_CHAR_ROW = 14-1; // Maximum character rows
 parameter CHAR_WIDTH = 9-1; // Width of the character in pixels
 
+parameter ADD_ONE_START = 5;
+
 reg [6:0] col_counter = 0;
 reg [4:0] row_counter = 0;
 reg [3:0] char_row_counter = 0;
 reg [3:0] char_pixel_counter = 0;
+
+assign add_one = ( char_pixel_counter > (ADD_ONE_START - 1) ) ? 1'b1 : 1'b0;
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin

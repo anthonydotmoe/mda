@@ -1,5 +1,6 @@
 module chrram (
 	input		clk,
+	input		add_one,
 //	input		wen,
 
 	input	[6:0]	col,
@@ -11,7 +12,7 @@ module chrram (
 //	input	[7:0]	w_attr
 );
 
-wire	[10:0]	full_addr = 80*row + col;
+wire	[10:0]	full_addr = 80*row + col + add_one;
 wire	[2:0]	ram_sel   = full_addr[10:8];
 wire	[7:0]	ram_raddr = full_addr[7:0];
 

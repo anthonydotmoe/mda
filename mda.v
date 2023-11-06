@@ -36,6 +36,9 @@ videogen videogen_inst(
 	.enable(enable)
 );
 
+// Bodge wire
+wire add_one;
+
 wire [6:0] col;
 wire [4:0] row;
 wire [7:0] char_code;
@@ -47,6 +50,7 @@ mda_pos mda_pos_inst(		// Gives character position for X/Y pixel coordinate (720
 	.rst(rst),
 	//.enable(enable_delayed),
 	.enable(enable),
+	.add_one(add_one),
 	.col(col),
 	.row(row),
 	.char_pixel(char_pixel),
@@ -77,6 +81,7 @@ chrram chrram_inst(
 	.clk(pixclk),
 	.col(col),
 	.row(row),
+	.add_one(add_one),
 	.r_code(char_code),
 	.r_attr(attr)
 );
