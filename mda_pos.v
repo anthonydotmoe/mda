@@ -21,7 +21,7 @@ reg [4:0] row_counter = 0;
 reg [3:0] char_row_counter = 0;
 reg [3:0] char_pixel_counter = 0;
 
-assign add_one = ( char_pixel_counter > (ADD_ONE_START - 1) ) ? 1'b1 : 1'b0;
+assign add_one = ( (char_pixel_counter > (ADD_ONE_START - 1)) & (col_counter != MAX_COL));
 
 always @(posedge clk or posedge rst) begin
 	if (rst) begin

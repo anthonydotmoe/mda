@@ -12,17 +12,6 @@ pixclk_gen pixclk_gen_inst(
 	.pixclk(pixclk)
 );
 
-/*
-wire enable_delayed;
-
-delay #(.NUM(6)) enable_delay(
-	.clk(pixclk),
-	.rst(rst),
-	.in(enable),
-	.out(enable_delayed)
-);
-*/
-
 wire enable;
 wire [9:0] x;
 wire [8:0] y;
@@ -48,7 +37,6 @@ wire [3:0] char_row;   // Counts 0-13 for each character
 mda_pos mda_pos_inst(		// Gives character position for X/Y pixel coordinate (720x350 -> 80x25)
 	.clk(pixclk),
 	.rst(rst),
-	//.enable(enable_delayed),
 	.enable(enable),
 	.add_one(add_one),
 	.col(col),
@@ -74,9 +62,6 @@ chrrom chrrom_inst(
 );
 
 wire [7:0] attr;
-
-assign inten = attr[3];
-
 chrram chrram_inst(
 	.clk(pixclk),
 	.col(col),
@@ -86,32 +71,25 @@ chrram chrram_inst(
 	.r_attr(attr)
 );
 
-assign video = vidsig & enable;
 
+// Implement intensity
+wire inten = attr[3];
 
-endmodule
+// Implement blinking
 
-// -----------------------------------------------------------------------------
-
-module delay(
-	input clk,
-	input rst,
-	input in,
-	output out
-);
-
-parameter NUM = 4;
-
-reg [NUM-1:0] shift;
-
-always @(posedge clk or posedge rst) begin
-	if (rst) begin
-		shift <= 0;
-	end else begin
-		shift <= { shift[NUM-2:0], in };
-	end
+wire char_blink = char_blink_c[2];
+reg [2:0] char_blink_c;
+always @(posedge vsync or posedge rst) begin
+	if (rst)
+		char_blink_c <= 0;
+	else
+		char_blink_c <= char_blink_c + 1;
 end
 
-assign out = shift[NUM-1];
+// Implement underline
+
+wire underline = ( (char_row == 4'd13) && (attr[2:0] == 3'b001) );
+
+assign video = (attr[7] == 1'b1) ? enable & ( char_blink & (vidsig || underline) ) : enable & (vidsig || underline);
 
 endmodule
